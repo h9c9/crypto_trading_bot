@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: crypto-trading-bot
+    env: python
+    buildCommand: pip install -r requirements-prod.txt
+    startCommand: gunicorn "web_interface.app:create_app()"
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true
+      - key: FLASK_ENV
+        value: production
+      - key: PYTHONUNBUFFERED
+        value: true
